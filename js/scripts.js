@@ -9,20 +9,25 @@ Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 }
 
-function Address(street, city, state) {
+function Address(variety, street, city, state) {
+  this.variety = variety;
   this.street = street;
   this.city = city;
   this.state = state;
 }
 
 Address.prototype.fullAddress = function() {
-  return this.street + ", " + this.city + ", " + this.state;
+  return this.variety + ": " + this.street + ", " + this.city + ", " + this.state;
 }
 
 // user interface logic
 $(document).ready(function() {
   $("#add-address").click(function() {
      $("#new-addresses").append('<div class="new-address">' +
+                                 '<div class="form-group">' +
+                                   '<label for="new-variety">Address Variety</label>' +
+                                   '<input type="text" class="form-control new-variety">' +
+                                 '</div>' +
                                   '<div class="form-group">' +
                                     '<label for="new-street">Street</label>' +
                                     '<input type="text" class="form-control new-street">' +
@@ -45,10 +50,11 @@ $(document).ready(function() {
     var newContact = new Contact(inputtedFirstName, inputtedLastName);
 
     $(".new-address").each(function() {
+      var inputtedVariety = $(this).find("input.new-variety").val();
       var inputtedStreet = $(this).find("input.new-street").val();
       var inputtedCity = $(this).find("input.new-city").val();
       var inputtedState = $(this).find("input.new-state").val();
-      var newAddress = new Address(inputtedStreet, inputtedCity, inputtedState);
+      var newAddress = new Address(inputtedVariety, inputtedStreet, inputtedCity, inputtedState);
       newContact.addresses.push(newAddress);
     });
 
@@ -66,6 +72,7 @@ $(document).ready(function() {
     });
     $("input#new-first-name").val("");
     $("input#new-last-name").val("");
+    $("input.new-variety").val("");
     $("input.new-street").val("");
     $("input.new-city").val("");
     $("input.new-state").val("");
