@@ -43,6 +43,7 @@ $(document).ready(function() {
                                   '</div>' +
                                   '</div>' +
                                 '</div>');
+
   });
   $("form#new-contact").submit(function(event) {
     event.preventDefault();
@@ -71,8 +72,15 @@ $(document).ready(function() {
       newContact.addresses.forEach(function(address) {
         $("ul#addresses").append("<li>" + address.fullAddress() + "</li>");
       });
+      $( ".contact" ).hover(
+        function() {
+        $( this ).addClass( "hover" );
+      }, function() {
+        $( this ).removeClass( "hover" );
+      }
+    );
     });
-    $(".plus-address").remove();
+    $(".plus-address").fadeOut("fast");
     $("input").val("");
   });
 });
