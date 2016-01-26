@@ -23,7 +23,8 @@ Address.prototype.fullAddress = function() {
 // user interface logic
 $(document).ready(function() {
   $("#add-address").click(function() {
-     $("#new-addresses").append('<div class="new-address">' +
+     $("#new-addresses").append('<div class="plus-address">' +
+                                  '<div class="new-address">' +
                                  '<div class="form-group">' +
                                    '<label for="new-variety">Address Variety</label>' +
                                    '<input type="text" class="form-control new-variety">' +
@@ -39,6 +40,7 @@ $(document).ready(function() {
                                   '<div class="form-group">' +
                                     '<label for="new-state">State</label>' +
                                     '<input type="text" class="form-control new-state">' +
+                                  '</div>' +
                                   '</div>' +
                                 '</div>');
   });
@@ -70,12 +72,7 @@ $(document).ready(function() {
         $("ul#addresses").append("<li>" + address.fullAddress() + "</li>");
       });
     });
-    $("input#new-first-name").val("");
-    $("input#new-last-name").val("");
-    $("input.new-variety").val("");
-    $("input.new-street").val("");
-    $("input.new-city").val("");
-    $("input.new-state").val("");
-
+    $(".plus-address").remove();
+    $("input").val("");
   });
 });
