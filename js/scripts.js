@@ -72,13 +72,6 @@ $(document).ready(function() {
       newContact.addresses.forEach(function(address) {
         $("ul#addresses").append("<li>" + address.fullAddress() + "</li>");
       });
-      $( ".contact" ).hover(
-        function() {
-        $( this ).addClass( "hover" );
-      }, function() {
-        $( this ).removeClass( "hover" );
-      }
-    );
     });
     $(".plus-address").fadeOut("fast");
     $("input").val("");
